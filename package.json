@@ -1,7 +1,7 @@
 {
   "name": "futurec-technologies-assignment",
   "version": "1.0.0",
-  "description": "",
+  "description": "user management and product management system",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
