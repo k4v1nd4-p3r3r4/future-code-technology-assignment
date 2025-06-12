@@ -4,9 +4,9 @@ const {createUser, findUserByUsername} = require('../models/user.model')
 
 router.post('/register', async (req, res) => {
     try{
-        const {username,password} = req.body;
+        const {name,username,password} = req.body;
 
-        if(!username || !password){
+        if(!name || !username || !password){
             return res.status(400).json({error: 'Username and password are required'});
         }
 
@@ -15,7 +15,7 @@ router.post('/register', async (req, res) => {
             return res.status(400).json({error: 'User already exists'});
         }
 
-        const userId = await createUser(username, password);
+        const userId = await createUser(name,username, password);
         res.status(201).json({message: 'User created successfully', userId});
 
     }catch(err){
