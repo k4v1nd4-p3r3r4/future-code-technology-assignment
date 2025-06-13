@@ -91,7 +91,7 @@ Example to register user:
 
 ```json
 {
-  "name":"wick",
+  "name":"Jhone Wick",
   "username":"wick123",
   "password":"wick@123"
 }
