@@ -1,6 +1,6 @@
 CREATE DATABASE product_db;
 
-use product_api;
+use product_db;
 
 CREATE TABLE users(
     id INT AUTO_INCREMENT PRIMARY KEY,

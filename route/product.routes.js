@@ -74,6 +74,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+//delete product route
 router.delete('/:id', async (req, res) => {
     try {
         const productId = req.params.id;

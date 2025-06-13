@@ -1,6 +1,7 @@
 const pool = require('../config/db');
 const bcrypt = require('bcrypt');
 
+// create user
 const createUser = async (name, username, password) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const [result] = await pool.execute(
@@ -10,6 +11,7 @@ const createUser = async (name, username, password) => {
     return result.insertId;
 };
 
+//find username
 const findUserByUsername = async (username) => {
     const [rows] = await pool.execute(
         'SELECT * FROM users WHERE username = ?',
@@ -18,6 +20,7 @@ const findUserByUsername = async (username) => {
     return rows[0];
 };
 
+// auth user
 const findByCredentials = async (username, password) => {
     const user = await findUserByUsername(username);
     if (!user) return null;
