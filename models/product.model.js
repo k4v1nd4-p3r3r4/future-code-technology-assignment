@@ -26,6 +26,10 @@ const updateProduct = async (id, name, price, quantity) => {
     ); 
 }
 
+const deleteProduct = async (id) => {
+    await pool.execute('DELETE FROM products WHERE id = ?', [id]);
+}
 
-module.exports = { createProduct, findAllProducts, findProductById, updateProduct };
+
+module.exports = { createProduct, findAllProducts, findProductById, updateProduct, deleteProduct };
 

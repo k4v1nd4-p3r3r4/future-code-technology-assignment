@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const { createProduct,findProductById,findAllProducts,updateProduct } = require('../models/product.model');
+const { createProduct,findProductById,findAllProducts,updateProduct,deleteProduct} = require('../models/product.model');
+const { route } = require('./auth.routes');
 
 //test product route work
 router.get('/', (req, res) => {
@@ -67,6 +68,22 @@ router.put('/:id', async (req, res) => {
         await updateProduct(productId, name || product.name, price || product.price , quantity || product.quantity);
         const updatedProduct = await findProductById(productId);
         res.status(200).json({ message: 'Product updated successfully', product: updatedProduct });
+      
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const productId = req.params.id;
+        const product = await findProductById(productId);
+        if (!product) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+
+        await deleteProduct(productId);
+        res.status(200).json({ message: 'Product deleted successfully' });
       
     } catch (err) {
         res.status(500).json({ error: err.message });
