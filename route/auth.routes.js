@@ -16,6 +16,13 @@ router.post('/register', async (req, res) => {
             return res.status(400).json({error: 'Username and password are required'});
         }
 
+         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+        if (!passwordRegex.test(password)) {
+            return res.status(400).json({
+                error: 'Weak password'
+            });
+        }
+       
         const userAlreadyexists = await findUserByUsername(username);
         if (userAlreadyexists) {
             return res.status(400).json({error: 'User already exists'});
