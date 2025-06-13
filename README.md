@@ -1,4 +1,4 @@
-# Futurec Technologies Assignment
+# Future Code Technologies Assignment
 
 ## Project Setup
 
