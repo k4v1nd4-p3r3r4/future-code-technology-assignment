@@ -6,7 +6,7 @@
 ### 1. Clone the Repository
 
 ```sh
-git clone <repository-url>
+git clone https://github.com/k4v1nd4-p3r3r4/future-code-technology-assignment.git
 cd futurec-technologies-assignment
 ```
 
