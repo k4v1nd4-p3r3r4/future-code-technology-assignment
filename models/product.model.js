@@ -1,5 +1,6 @@
 const pool = require('../config/db');
 
+
 const createProduct = async (name,price,quantity)=>{
     const [result] = await pool.execute(
         'INSERT INTO products (name, price, quantity) VALUES (?,?,?)',
@@ -18,7 +19,13 @@ const findProductById = async (id) => {
     return rows[0];
 }
 
+const updateProduct = async (id, name, price, quantity) => {
+    await pool.execute(
+        'UPDATE products SET name = ?, price = ?, quantity = ? WHERE id = ?',
+        [name, price, quantity, id]
+    ); 
+}
 
 
-module.exports = { createProduct, findAllProducts, findProductById };
+module.exports = { createProduct, findAllProducts, findProductById, updateProduct };
 

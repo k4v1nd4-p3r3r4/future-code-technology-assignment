@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { createProduct,findProductById,findAllProducts } = require('../models/product.model');
+const { createProduct,findProductById,findAllProducts,updateProduct } = require('../models/product.model');
 
 //test product route work
 router.get('/', (req, res) => {
@@ -32,6 +32,42 @@ router.get('/all', async (req, res) => {
     try {
         const products = await findAllProducts();
         res.status(200).json(products);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+//get product by id
+router.get('/:id', async (req, res) => {
+    try{
+        const productId = req.params.id;
+        const product = await findProductById(productId);
+
+        if (!product) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+
+        res.status(200).json(product);
+    }catch(err){
+        res.status(500).json({ error: err.message });
+    }
+});
+
+//update product route
+router.put('/:id', async (req, res) => {
+    try {
+        const productId = req.params.id;
+        const { name, price, quantity } = req.body;
+
+        const product = await findProductById(productId);
+        if (!product) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+
+        await updateProduct(productId, name || product.name, price || product.price , quantity || product.quantity);
+        const updatedProduct = await findProductById(productId);
+        res.status(200).json({ message: 'Product updated successfully', product: updatedProduct });
+      
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
