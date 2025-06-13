@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const {createUser, findUserByUsername,findByCredentials} = require('../models/user.model')
 
+// test auth running
+router.get('/', (req, res) => {
+  res.send('auth route running');
+});
+
 // register user route
 router.post('/register', async (req, res) => {
     try{

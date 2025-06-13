@@ -2,6 +2,7 @@ const express = require('express');
 require('dotenv').config();
 
 const authRoutes = require('./route/auth.routes');
+const productRoutes = require('./route/product.routes');
 
 const bodyParser = require('body-parser');
 
@@ -11,6 +12,9 @@ app.use(bodyParser.json());
 
 //auth routes
 app.use('/api/auth', authRoutes);
+
+//product routes
+app.use('/api/products', productRoutes);
 
 //test route is working
 app.get('/', (req, res) => {
