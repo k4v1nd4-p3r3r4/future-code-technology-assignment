@@ -1,4 +1,4 @@
-# Futurec Technologies Assignment
+# Future Code Technologies Assignment
 
 ## Project Setup
 
@@ -6,7 +6,7 @@
 ### 1. Clone the Repository
 
 ```sh
-git clone <repository-url>
+git clone https://github.com/k4v1nd4-p3r3r4/future-code-technology-assignment.git
 cd futurec-technologies-assignment
 ```
 
@@ -91,7 +91,7 @@ Example to register user:
 
 ```json
 {
-  "name":"wick",
+  "name":"Jhone Wick",
   "username":"wick123",
   "password":"wick@123"
 }
